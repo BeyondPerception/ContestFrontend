@@ -1,9 +1,7 @@
 import React, { Component } from 'react';
-import {MDBContainer} from 'mdbreact';
+import { MDBContainer } from 'mdbreact';
 
-
-
-class Home extends Component {
+class WrittenScoreboard extends Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -11,15 +9,15 @@ class Home extends Component {
         };
     }
     render() {
+    
         return (
             <div>
                 <MDBContainer className="text-center mt-5">
-                    <h2>Home</h2>
+                    <h2>Written Scoreboard</h2>
                     <h5>Test Page</h5>
                 </MDBContainer>
             </div>
         );
     }
-
 }
-export default Home;
+export default WrittenScoreboard;

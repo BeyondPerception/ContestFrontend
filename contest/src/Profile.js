@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
-import {MDBContainer} from 'mdbreact';
+import { MDBContainer } from 'mdbreact';
 
 
 
-class Home extends Component {
+class Profile extends Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -14,7 +14,7 @@ class Home extends Component {
         return (
             <div>
                 <MDBContainer className="text-center mt-5">
-                    <h2>Home</h2>
+                    <h2>Profile</h2>
                     <h5>Test Page</h5>
                 </MDBContainer>
             </div>
@@ -22,4 +22,4 @@ class Home extends Component {
     }
 
 }
-export default Home;
+export default Profile;
