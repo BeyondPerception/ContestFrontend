@@ -1,64 +1,78 @@
-import React, { Component } from "react";
-import Home from "./Home.js";
-import {
-MDBNavbar, MDBNavbarBrand, MDBNavbarNav, MDBNavItem, MDBNavLink, MDBNavbarToggler, MDBCollapse, MDBFormInline,
-MDBDropdown, MDBDropdownToggle, MDBDropdownMenu, MDBDropdownItem
-} from "mdbreact";
-import { BrowserRouter as Router } from 'react-router-dom';
+import React, { Component } from 'react';
+import { MDBNavbar, MDBNavbarBrand, MDBNavbarNav, MDBNavbarToggler, MDBCollapse, MDBNavItem, MDBNavLink } from 'mdbreact';
+import { BrowserRouter as Router, Route, Switch, Link } from 'react-router-dom';
+import Home from "./Home";
+import WrittenScoreboard from "./WrittenScoreboard.js";
+import ProgrammingScoreboard from "./ProgrammingScoreboard.js";
+import Profile from "./Profile.js";
 
+class NavBar extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      collapse: false,
+    };
+    this.onClick = this.onClick.bind(this);
+  }
 
+  onClick() {
+    this.setState({
+      collapse: !this.state.collapse,
+    });
+  }
 
-class NavBar extends Component
-{
-    constructor(props) {
-        super(props);
-        this.state = {
-          isOpen: false
-        };
-    }
-    toggleCollapse = () => {
-        this.setState({ isOpen: !this.state.isOpen });
-    }
-
-    render(){
-        return(
-            <Router>
+  render() {
+    return (
+      <div>
+        <Router>
+          <header>
             <MDBNavbar color="red" dark expand="md">
-              <MDBNavbarBrand>
-                <strong className="white-text">Cypress Woods Computer Science Contest</strong>
-                <icon>
-                    
-                </icon>
+              <MDBNavbarBrand href="/">
+                <strong>CyWoods Contest</strong>
               </MDBNavbarBrand>
-              <MDBNavbarToggler onClick={this.toggleCollapse} />
-              <MDBCollapse id="navbarCollapse3" isOpen={this.state.isOpen} navbar>
+              <MDBNavbarToggler onClick={this.onClick} />
+              <MDBCollapse isOpen={this.state.collapse} navbar>
                 <MDBNavbarNav left>
                   <MDBNavItem active>
-                    <MDBNavLink to="#!">Home</MDBNavLink>
+                    <MDBNavLink to="/">Home</MDBNavLink>
                   </MDBNavItem>
                   <MDBNavItem>
-                    <MDBNavLink to="#!">Written Scoreboard</MDBNavLink>
+                    <MDBNavLink to="/written">Written Scoreboard</MDBNavLink>
                   </MDBNavItem>
                   <MDBNavItem>
-                    <MDBNavLink to="#!">Programming Scoreboard</MDBNavLink>
-                  </MDBNavItem>
-                  <MDBNavItem right>
-                    <MDBNavLink to="#!">Profile</MDBNavLink>
+                    <MDBNavLink to="/programming">Programming Scoreboard</MDBNavLink>
                   </MDBNavItem>
                   <MDBNavItem>
+                    <MDBNavLink to="/profile">Profile</MDBNavLink>
                   </MDBNavItem>
                 </MDBNavbarNav>
                 <MDBNavbarNav right>
                   <MDBNavItem>
-                  <MDBNavLink to="#!">Login</MDBNavLink>
+                    <MDBNavLink to="/login">Login</MDBNavLink>
                   </MDBNavItem>
                 </MDBNavbarNav>
-                
               </MDBCollapse>
             </MDBNavbar>
-          </Router>
-        );
-    }
-    
+          </header>
+          {/* Add new pages here*/}
+          <Switch>
+            <Route path="/profile">
+              <Profile />
+            </Route>
+            <Route path="/programming">
+              <ProgrammingScoreboard />
+            </Route>
+            <Route path="/written">
+              <WrittenScoreboard />
+            </Route>
+            <Route path="/">
+              <Home />
+            </Route>
+          </Switch>
+        </Router>
+      </div>
+    );
+  }
 }
+
 export default NavBar;
