@@ -1,20 +1,19 @@
-import React, {Component} from 'react';
-import {BrowserRouter as Router, Route, Switch} from 'react-router-dom';
+import React, { Component } from 'react';
 import NavBar from './NavBar.js';
-import Home from './Home.js';
+
 class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      user: null 
+      user: null
     };
   }
-  
+
   render() {
-    const {user} = this.state;
+    const { user } = this.state;
     return (
       <div>
-        <NavBar/>
+        <NavBar />
       </div>
     );
   }
