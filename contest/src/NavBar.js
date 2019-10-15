@@ -4,7 +4,10 @@ import { BrowserRouter as Router, Route, Switch, Link } from 'react-router-dom';
 import Home from "./Home";
 import WrittenScoreboard from "./WrittenScoreboard.js";
 import ProgrammingScoreboard from "./ProgrammingScoreboard.js";
+import Register from "./Register.js";
+import Login from "./Login.js";
 import Profile from "./Profile.js";
+import { isLogicalExpression } from '@babel/types';
 
 class NavBar extends Component {
   constructor(props) {
@@ -33,7 +36,7 @@ class NavBar extends Component {
               <MDBNavbarToggler onClick={this.onClick} />
               <MDBCollapse isOpen={this.state.collapse} navbar>
                 <MDBNavbarNav left>
-                  <MDBNavItem active>
+                  <MDBNavItem>
                     <MDBNavLink to="/">Home</MDBNavLink>
                   </MDBNavItem>
                   <MDBNavItem>
@@ -50,6 +53,9 @@ class NavBar extends Component {
                   <MDBNavItem>
                     <MDBNavLink to="/login">Login</MDBNavLink>
                   </MDBNavItem>
+                  <MDBNavItem>
+                    <MDBNavLink to="/register">Register</MDBNavLink>
+                  </MDBNavItem>
                 </MDBNavbarNav>
               </MDBCollapse>
             </MDBNavbar>
@@ -64,6 +70,12 @@ class NavBar extends Component {
             </Route>
             <Route path="/written">
               <WrittenScoreboard />
+            </Route>
+            <Route path="/Register">
+              <Register />
+            </Route>
+            <Route path="/login">
+              <Login />
             </Route>
             <Route path="/">
               <Home />

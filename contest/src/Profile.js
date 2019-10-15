@@ -15,7 +15,7 @@ class Profile extends Component {
             <div>
                 <MDBContainer className="text-center mt-5">
                     <h2>Profile</h2>
-                    <h5>Test Page</h5>
+                    <h5>This page will be available on the day of the contest.</h5>
                 </MDBContainer>
             </div>
         );
