@@ -55,7 +55,7 @@ class Register extends Component {
                     />
                     <MDBInput
                         label="Confirm your password"
-                        icon="lock"
+                        icon="exclamation-triangle"
                         group
                         type="password"
                         validate

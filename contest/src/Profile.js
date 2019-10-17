@@ -1,9 +1,17 @@
 import React, { Component } from 'react';
-import { MDBContainer, MDBRow, MDBCol } from 'mdbreact';
+import { MDBContainer, MDBRow, MDBCol, MDBCard, MDBCardHeader, MDBCardBody, MDBTable} from 'mdbreact';
 
+const columns = ["Person Name", "Age", "Company Name", "Country", "City"];
 
+const data = [
+  ["Aurelia Vega", 30, "Deepends", "Spain", "Madrid"],
+  ["Guerra Cortez", 45, "Insectus", "USA", "San Francisco"],
+  ["Guadalupe House", 26, "Isotronic", "Germany", "Frankfurt am Main"],
+  ["Elisa Gallagher", 31, "Portica", "United Kingdom", "London"]
+];
 
 class Profile extends Component {
+    
     constructor(props) {
         super(props);
         this.state = {
@@ -13,23 +21,19 @@ class Profile extends Component {
     render() {
         return (
             <div>
-                <MDBContainer className="text-center mt-5">
-                    <h2>Profile</h2>
-                    <MDBRow>
+                <MDBContainer>
+                    <br/><br/><br/>
+                    <h1>Profile</h1>
+                    <br/>
+                    <MDBRow >
                         <MDBCol >
-                        <h1>Hi</h1>
-                        <br/>
-                        <h2>School Name: </h2>
-                        <br/>
-                        <h3>Hi</h3>
-                        <br/>
-                        <h4>Hi</h4>
-                        <br/>
-                        <h5>Hi</h5>
-                        <br/>
-                        <h6>Hi</h6>
+                            <h3>School Name: </h3>
+                            <br/><br/>
+                            <h4>Coaches Name: </h4>
                         </MDBCol>
+                        
                     </MDBRow>
+                    
                 </MDBContainer>
             </div>
         );
