@@ -47,6 +47,13 @@ class Register extends Component {
                         success="right"
                     />
                     <MDBInput
+                                label="Phone Number"
+                                icon="phone"
+                                group
+                                type="text"
+                                validate
+                            />
+                    <MDBInput
                         label="Your password"
                         icon="lock"
                         group

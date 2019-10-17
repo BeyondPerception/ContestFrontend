@@ -1,14 +1,7 @@
 import React, { Component } from 'react';
-import { MDBContainer, MDBRow, MDBCol, MDBCard, MDBCardHeader, MDBCardBody, MDBTable} from 'mdbreact';
+import { MDBContainer, MDBRow, MDBCol, MDBCard, MDBCardHeader, MDBCardBody, MDBTable, MDBBtn} from 'mdbreact';
 
-const columns = ["Person Name", "Age", "Company Name", "Country", "City"];
 
-const data = [
-  ["Aurelia Vega", 30, "Deepends", "Spain", "Madrid"],
-  ["Guerra Cortez", 45, "Insectus", "USA", "San Francisco"],
-  ["Guadalupe House", 26, "Isotronic", "Germany", "Frankfurt am Main"],
-  ["Elisa Gallagher", 31, "Portica", "United Kingdom", "London"]
-];
 
 class Profile extends Component {
     
@@ -24,12 +17,15 @@ class Profile extends Component {
                 <MDBContainer>
                     <br/><br/><br/>
                     <h1>Profile</h1>
-                    <br/>
+                    <br/><br/>
                     <MDBRow >
                         <MDBCol >
-                            <h3>School Name: </h3>
-                            <br/><br/>
+                            <h2>School Name: </h2>
                             <h4>Coaches Name: </h4>
+                            <h4>Phone Number: </h4>
+                            <h4>Email: </h4>
+                            <br/>
+                            <MDBBtn color='red' href='/Editinfo'>Edit Information</MDBBtn>
                         </MDBCol>
                         
                     </MDBRow>

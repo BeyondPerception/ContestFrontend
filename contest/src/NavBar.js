@@ -6,6 +6,7 @@ import WrittenScoreboard from "./WrittenScoreboard.js";
 import ProgrammingScoreboard from "./ProgrammingScoreboard.js";
 import Register from "./Register.js";
 import Login from "./Login.js";
+import Editinfo from "./Editinfo.js";
 import Profile from "./Profile.js";
 import { isLogicalExpression } from '@babel/types';
 
@@ -76,6 +77,9 @@ class NavBar extends Component {
             </Route>
             <Route path="/login">
               <Login />
+            </Route>
+            <Route path="/Editinfo">
+              <Editinfo />
             </Route>
             <Route path="/">
               <Home />
