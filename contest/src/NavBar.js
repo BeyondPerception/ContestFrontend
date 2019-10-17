@@ -8,6 +8,8 @@ import Register from "./Register.js";
 import Login from "./Login.js";
 import Editinfo from "./Editinfo.js";
 import Profile from "./Profile.js";
+import Frgtpass from "./Forgotpass.js";
+import Teams from "./Teams.js";
 import { isLogicalExpression } from '@babel/types';
 
 class NavBar extends Component {
@@ -40,11 +42,14 @@ class NavBar extends Component {
                   <MDBNavItem>
                     <MDBNavLink to="/">Home</MDBNavLink>
                   </MDBNavItem>
-                  <MDBNavItem>
+                  {/* <MDBNavItem>
                     <MDBNavLink to="/written">Written Scoreboard</MDBNavLink>
                   </MDBNavItem>
                   <MDBNavItem>
                     <MDBNavLink to="/programming">Programming Scoreboard</MDBNavLink>
+                  </MDBNavItem> */}
+                  <MDBNavItem>
+                    <MDBNavLink to="/teams">Teams</MDBNavLink>
                   </MDBNavItem>
                   <MDBNavItem>
                     <MDBNavLink to="/profile">Profile</MDBNavLink>
@@ -80,6 +85,12 @@ class NavBar extends Component {
             </Route>
             <Route path="/Editinfo">
               <Editinfo />
+            </Route>
+            <Route path="/Forgotpass">
+              <Frgtpass />
+            </Route>
+            <Route path="/Teams">
+              <Teams />
             </Route>
             <Route path="/">
               <Home />

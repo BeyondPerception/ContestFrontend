@@ -21,8 +21,6 @@ class Editinfo extends Component {
                         <MDBCol md="6" >
                             <form>
                             <p className="h3 text-center mb-4">Edit your information here</p>
-                            <a className="h5 text-center mb-4">Please only enter in data you want to change</a>
-                            <br/><br/>
                             <a className="h5 text-center mb-4">If you would like to change your password, make sure to also confirm your password</a>
                             <br/><br/>
                             <div className="grey-text">
@@ -67,7 +65,7 @@ class Editinfo extends Component {
                             />
                             </div>
                             <div className="text-center">
-                            <MDBBtn color="red" href="/Profile">Finish Editing</MDBBtn>
+                            <MDBBtn color="red" href="/Profile">Save Edits</MDBBtn>
                             </div>
                         </form>
                         </MDBCol>

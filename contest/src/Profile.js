@@ -20,13 +20,15 @@ class Profile extends Component {
                     <br/><br/>
                     <MDBRow >
                         <MDBCol >
-                            <h2>School Name: </h2>
+                            <h4>School Name: </h4>
                             <h4>Coaches Name: </h4>
                             <h4>Phone Number: </h4>
                             <h4>Email: </h4>
                             <br/>
                             <MDBBtn color='red' href='/Editinfo'>Edit Information</MDBBtn>
                         </MDBCol>
+                    </MDBRow>
+                    <MDBRow>
                         
                     </MDBRow>
                     

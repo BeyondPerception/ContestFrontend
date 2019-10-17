@@ -17,7 +17,7 @@ class Register extends Component {
            <MDBRow center='true'>
                 <MDBCol md="6" middle>
                 <form>
-                    <p className="h5 text-center mb-4">Register your school here!</p>
+                    <p className="h2 text-center mb-4">Register your school here!</p>
                     <div className="grey-text">
                     <MDBInput
                         label="Your name"
