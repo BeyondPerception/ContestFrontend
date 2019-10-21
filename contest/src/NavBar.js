@@ -5,6 +5,7 @@ import Home from "./Home";
 import WrittenScoreboard from "./WrittenScoreboard.js";
 import ProgrammingScoreboard from "./ProgrammingScoreboard.js";
 import Register from "./Register.js";
+import Formpage from "./Formpage.js";
 import Login from "./Login.js";
 import Editinfo from "./Editinfo.js";
 import Profile from "./Profile.js";
@@ -60,6 +61,9 @@ class NavBar extends Component {
                     <MDBNavLink to="/login">Login</MDBNavLink>
                   </MDBNavItem>
                   <MDBNavItem>
+                    <MDBNavLink to="/formpage">Test</MDBNavLink>
+                  </MDBNavItem>
+                  <MDBNavItem>
                     <MDBNavLink to="/register">Register</MDBNavLink>
                   </MDBNavItem>
                 </MDBNavbarNav>
@@ -91,6 +95,9 @@ class NavBar extends Component {
             </Route>
             <Route path="/Teams">
               <Teams />
+            </Route>
+            <Route path="/Formpage">
+              <Formpage />
             </Route>
             <Route path="/">
               <Home />

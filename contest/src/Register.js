@@ -76,7 +76,7 @@ class Register extends Component {
                                     onChange={(e) => this.onChange("school", e.target.value)}
                                 />
                                 <MDBInput
-                                    label="Your email"
+                                    label="Enter your email"
                                     icon="envelope"
                                     group
                                     type="email"
