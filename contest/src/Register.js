@@ -37,7 +37,7 @@ class Register extends Component {
         createUser(name, password, email, school, (data) => {
             new Cookies().set("user", data.id, { path: "/" });
             console.log(data);
-            this.props.update(() => this.props.history.push("/profile"));
+            // this.props.update(() => this.props.history.push("/profile"));
         });
     }
 
@@ -102,6 +102,7 @@ class Register extends Component {
                                     type="password"
                                     validate
                                     required
+                                    value={password}
                                     onChange={(e) => this.onChange("password", e.target.value)}
                                 />
                                 <MDBInput
