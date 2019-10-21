@@ -117,7 +117,7 @@ class Register extends Component {
                                 />
                             </div>
                             <div className="text-center">
-                                <MDBBtn color="red" type="submit">Register</MDBBtn>
+                                <MDBBtn color="red" type="submit" href='/login'>Register</MDBBtn>
                             </div>
                         </form>
                     </MDBCol>
