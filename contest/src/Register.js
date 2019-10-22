@@ -1,11 +1,17 @@
-import React, { Component } from 'react';
-import { MDBContainer, MDBRow, MDBCol, MDBBtn, MDBInput, MDBCard } from 'mdbreact';
-import { withRouter } from 'react-router-dom';
-import { createUser, authenticateUser } from './DataFetcher.js';
-import Cookies from 'universal-cookie';
+import React, { Component } from "react";
+import {
+    MDBContainer,
+    MDBRow,
+    MDBCol,
+    MDBBtn,
+    MDBInput,
+    MDBCard
+} from "mdbreact";
+import { withRouter } from "react-router-dom";
+import { createUser, authenticateUser } from "./DataFetcher.js";
+import Cookies from "universal-cookie";
 
 class Register extends Component {
-
     constructor(props) {
         super(props);
         this.state = {
@@ -14,7 +20,7 @@ class Register extends Component {
             confirmPassword: "",
             email: "",
             confirmEmail: "",
-            school: "",
+            school: ""
         };
     }
 
@@ -26,35 +32,77 @@ class Register extends Component {
 
     submitHandler = event => {
         event.preventDefault();
-        const { name, password, confirmPassword, email, confirmEmail, school } = this.state;
-        if (name.trim() === "" || password.trim() === "" || confirmPassword.trim() === "" || email.trim() === "" || confirmEmail.trim() === "" || school.trim() === "") {
+        const {
+            name,
+            password,
+            confirmPassword,
+            email,
+            confirmEmail,
+            school
+        } = this.state;
+        if (
+            name === "" ||
+            password === "" ||
+            confirmPassword === "" ||
+            email === "" ||
+            confirmEmail === "" ||
+            school === ""
+        ) {
             alert("Please do not leave any fields blank");
             return;
         }
-        if (password !== confirmPassword) {
-            alert("Passwords do not match, please try again.");
-            return;
+
+        submitHandler = event => {
+            event.preventDefault();
+            const { name, password, confirmPassword, email, confirmEmail, school } = this.state;
+            if (name.trim() === "" || password.trim() === "" || confirmPassword.trim() === "" || email.trim() === "" || confirmEmail.trim() === "" || school.trim() === "") {
+                alert("Please do not leave any fields blank");
+                return;
+            }
+            if (password !== confirmPassword) {
+                alert("Passwords do not match, please try again.");
+                return;
+            }
+            if (email !== confirmEmail) {
+                alert("Emails do not match, please try again.");
+                return;
+            }
+            createUser(name, password, email, school, (data) => {
+            });
+            authenticateUser(email, password, (data) => {
+                new Cookies().set("key", data.key, { path: "/" });
+            });
+
+            this.props.history.push('/profile');
         }
         if (email !== confirmEmail) {
             alert("Emails do not match, please try again.");
             return;
         }
-        createUser(name, password, email, school, (data) => {
-        });
-        authenticateUser(email, password, (data) => {
+        createUser(name, password, email, school, data => { });
+        authenticateUser(email, password, data => {
             new Cookies().set("key", data.key, { path: "/" });
         });
 
-        this.props.history.push('/profile');
-    }
+        this.props.history.push("/profile");
+    };
 
     render() {
-        const { name, password, confirmPassword, email, confirmEmail, school } = this.state;
+        const {
+            name,
+            password,
+            confirmPassword,
+            email,
+            confirmEmail,
+            school
+        } = this.state;
 
         return (
             <MDBContainer>
-                <br /><br /><br />
-                <MDBRow center='true'>
+                <br />
+                <br />
+                <br />
+                <MDBRow center="true">
                     <MDBCol md="6" middle>
                         <form
                             className="register_validation_form"
@@ -70,7 +118,7 @@ class Register extends Component {
                                     validate
                                     required
                                     value={name}
-                                    onChange={(e) => this.onChange("name", e.target.value)}
+                                    onChange={e => this.onChange("name", e.target.value)}
                                 />
                                 <MDBInput
                                     label="School"
@@ -80,7 +128,7 @@ class Register extends Component {
                                     validate
                                     required
                                     value={school}
-                                    onChange={(e) => this.onChange("school", e.target.value)}
+                                    onChange={e => this.onChange("school", e.target.value)}
                                 />
                                 <MDBInput
                                     label="Enter your email"
@@ -90,7 +138,7 @@ class Register extends Component {
                                     validate
                                     required
                                     value={email}
-                                    onChange={(e) => this.onChange("email", e.target.value)}
+                                    onChange={e => this.onChange("email", e.target.value)}
                                 />
                                 <MDBInput
                                     label="Confirm your email"
@@ -100,7 +148,7 @@ class Register extends Component {
                                     validate
                                     required
                                     value={confirmEmail}
-                                    onChange={(e) => this.onChange("confirmEmail", e.target.value)}
+                                    onChange={e => this.onChange("confirmEmail", e.target.value)}
                                 />
                                 <MDBInput
                                     label="Your password"
@@ -110,7 +158,7 @@ class Register extends Component {
                                     validate
                                     required
                                     value={password}
-                                    onChange={(e) => this.onChange("password", e.target.value)}
+                                    onChange={e => this.onChange("password", e.target.value)}
                                 />
                                 <MDBInput
                                     label="Confirm your password"
@@ -120,11 +168,15 @@ class Register extends Component {
                                     validate
                                     required
                                     value={confirmPassword}
-                                    onChange={(e) => this.onChange("confirmPassword", e.target.value)}
+                                    onChange={e =>
+                                        this.onChange("confirmPassword", e.target.value)
+                                    }
                                 />
                             </div>
                             <div className="text-center">
-                                <MDBBtn color="red" type="submit">Register</MDBBtn>
+                                <MDBBtn color="red" type="submit">
+                                    Register
+                </MDBBtn>
                             </div>
                         </form>
                     </MDBCol>
@@ -132,6 +184,5 @@ class Register extends Component {
             </MDBContainer>
         );
     }
-
 }
 export default withRouter(Register);
