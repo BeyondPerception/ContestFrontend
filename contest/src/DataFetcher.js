@@ -1,3 +1,5 @@
+import Cookies from "universal-cookie";
+
 const djangoIP = 'http://dent.ml:8000/';
 
 
@@ -35,6 +37,18 @@ export async function authenticateUser(email, password, success) {
         return true
     }
     else return false;
+}
+
+export async function logout(key) {
+    console.log('logout')
+    const response = await fetch(`${djangoIP}auth/logout/`, {
+        method: "POST",
+        headers: {
+            "content-type": "application/json",
+            "Authorization": "Token " + key,
+        },
+    });
+    new Cookies().remove("key")
 }
 
 export async function getCurrentUser(key, success)

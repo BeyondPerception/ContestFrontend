@@ -1,6 +1,14 @@
-import React, { Component } from 'react';
-import { MDBNavbar, MDBNavbarBrand, MDBNavbarNav, MDBNavbarToggler, MDBCollapse, MDBNavItem, MDBNavLink } from 'mdbreact';
-import { BrowserRouter as Router, Route, Switch, Link } from 'react-router-dom';
+import React, { Component } from "react";
+import {
+  MDBNavbar,
+  MDBNavbarBrand,
+  MDBNavbarNav,
+  MDBNavbarToggler,
+  MDBCollapse,
+  MDBNavItem,
+  MDBNavLink
+} from "mdbreact";
+import { BrowserRouter as Router, Route, Switch, Link } from "react-router-dom";
 import Home from "./Home";
 import WrittenScoreboard from "./WrittenScoreboard.js";
 import ProgrammingScoreboard from "./ProgrammingScoreboard.js";
@@ -11,24 +19,26 @@ import Editinfo from "./Editinfo.js";
 import Profile from "./Profile.js";
 import Frgtpass from "./Forgotpass.js";
 import Teams from "./Teams.js";
-import { isLogicalExpression } from '@babel/types';
+import { isLogicalExpression } from "@babel/types";
+import Cookies from "universal-cookie";
 
 class NavBar extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      collapse: false,
+      collapse: false
     };
     this.onClick = this.onClick.bind(this);
   }
 
   onClick() {
     this.setState({
-      collapse: !this.state.collapse,
+      collapse: !this.state.collapse
     });
   }
 
   render() {
+    var cookies = new Cookies();
     return (
       <div>
         <Router>
@@ -52,13 +62,20 @@ class NavBar extends Component {
                   <MDBNavItem>
                     <MDBNavLink to="/teams">Teams</MDBNavLink>
                   </MDBNavItem>
-                  <MDBNavItem>
-                    <MDBNavLink to="/profile">Profile</MDBNavLink>
-                  </MDBNavItem>
+                  {cookies.get("key") && (
+                    <MDBNavItem>
+                      <MDBNavLink to="/profile">Profile</MDBNavLink>
+                    </MDBNavItem>
+                  )}
                 </MDBNavbarNav>
                 <MDBNavbarNav right>
                   <MDBNavItem>
                     <MDBNavLink to="/login">Login</MDBNavLink>
+                  </MDBNavItem>
+                  <MDBNavItem>
+                    <MDBNavLink to='{logout()}'>
+                      Logout
+                    </MDBNavLink>
                   </MDBNavItem>
                   <MDBNavItem>
                     <MDBNavLink to="/register">Register</MDBNavLink>
