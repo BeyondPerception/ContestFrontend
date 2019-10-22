@@ -27,7 +27,7 @@ class Register extends Component {
     submitHandler = event => {
         event.preventDefault();
         const { name, password, confirmPassword, email, confirmEmail, school } = this.state;
-        if (name === "" || password === "" || confirmPassword === "" || email === "" || confirmEmail === "" || school === "") {
+        if (name.trim() === "" || password.trim() === "" || confirmPassword.trim() === "" || email.trim() === "" || confirmEmail.trim() === "" || school.trim() === "") {
             alert("Please do not leave any fields blank");
             return;
         }
