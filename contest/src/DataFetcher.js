@@ -75,17 +75,6 @@ export async function getCurrentUser(key, success) {
     if (json) success(json);
 }
 
-export async function getCurrentUser(key, success) {
-    const response = await fetch(`${djangoIP}users/get_current_user/`, {
-        method: "GET",
-        headers: {
-            "content-type": "application/json",
-            "Authorization": "Token " + key,
-        },
-    });
-    var json = await response.json();
-    if (json) success(json);
-}
 export async function getAllTeams(key) {
     const response = await fetch(`${djangoIP}teams/`, {
         method: "GET",
