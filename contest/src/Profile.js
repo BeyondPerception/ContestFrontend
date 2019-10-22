@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { MDBContainer, MDBRow, MDBCol, MDBCard, MDBCardHeader, MDBCardBody, MDBTable, MDBBtn} from 'mdbreact';
+import { MDBContainer, MDBRow, MDBCol, MDBCard, MDBCardHeader, MDBCardBody, MDBTable, MDBBtn } from 'mdbreact';
 import { getCurrentUser } from './DataFetcher.js'
 import Cookies from 'universal-cookie';
 
@@ -9,14 +9,14 @@ class Profile extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            school: "",
-            name: "",
-            email: "",
+            user: "",
         };
         this.storeData = this.storeData.bind(this);
+        getCurrentUser(new Cookies().get("key"), (data) => {
+            this.storeData(data, "user");
+        })
     }
-    onClick()
-    {
+    onClick() {
         getCurrentUser(new Cookies().get("key"), (data) => {
             console.log(data)
         })
@@ -29,7 +29,7 @@ class Profile extends Component {
     }
 
     render() {
-        const { school, name, email } = this.props
+        const { user } = this.state;
         return (
             <div>
                 <MDBContainer>
@@ -38,9 +38,9 @@ class Profile extends Component {
                     <br /><br />
                     <MDBRow >
                         <MDBCol >
-                            <h4>School Name: {school}</h4>
-                            <h4>Coaches Name: {name}</h4>
-                            <h4>Email: {email}</h4>
+                            <h4>School Name: {user.school}</h4>
+                            <h4>Coaches Name: {user.name}</h4>
+                            <h4>Email: {user.email}</h4>
                             <br />
                             <MDBBtn color='red' href='/Editinfo'>Edit Information</MDBBtn>
                             <MDBBtn color="red" type="button" className="btn-block z-depth-2" onClick={this.onClick.bind(this)}>
