@@ -40,10 +40,10 @@ class Register extends Component {
             return;
         }
         createUser(name, password, email, school, (data) => {
-            new Cookies().set("user", data.id, { path: "/" });
-            console.log(data);
         });
-        authenticateUser(email, password);
+        authenticateUser(email, password, (data) => {
+            new Cookies().set("key", data.key, { path: "/" });
+        });
 
         this.props.history.push('/profile');
     }

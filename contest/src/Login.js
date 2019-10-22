@@ -14,17 +14,20 @@ class Login extends Component {
     }
 
     onClick() {
-        const cookies = new Cookies();
         const { email, password } = this.state;
-
         authenticateUser(
             email, password,
             ((data) => {
-                cookies.set("user", data.id, { path: "/" });
-                this.props.update(() => this.props.history.push("/profile"));
+                new Cookies().set("key", data.key, { path: "/" });
             }),
-            (() => alert("Failed to login, username or password incorrect. Please try again."))
-        );
+        ).then((success) => {
+            if(success)
+                props.history.push('/profile');
+            else               
+                alert("Failed to login, username or password incorrect. Please try again.")
+        })
+        
+        ;
     }
 
     setEmail(email) {

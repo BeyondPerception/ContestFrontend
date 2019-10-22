@@ -1,4 +1,4 @@
-const djangoIP = 'http://dent:8000/';
+const djangoIP = 'http://dent.ml:8000/';
 
 
 
@@ -20,7 +20,7 @@ export async function createUser(name, password, email, school, success) {
     else success(json);
 }
 
-export async function authenticateUser(email, password, success, failure) {
+export async function authenticateUser(email, password, success) {
     const response = await fetch(`${djangoIP}auth/login/`, {
         method: "POST",
         headers: {
@@ -28,7 +28,11 @@ export async function authenticateUser(email, password, success, failure) {
         },
         body: JSON.stringify({ email, password })
     });
-    var json = response.json();
-    if (json.id) success(json);
-    else failure();
+    var json = await response.json();
+    if (json.key)
+    {
+        success(json);
+        return true
+    }
+    else return false;
 }
