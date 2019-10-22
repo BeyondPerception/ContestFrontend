@@ -1,4 +1,4 @@
-const djangoIP = 'http://dent.ml:8000/';
+const djangoIP = 'http://dent:8000/';
 
 
 

@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { MDBContainer, MDBRow, MDBCol, MDBBtn, MDBInput, MDBCard, MDBCardBody } from 'mdbreact';
-import { Redirect } from 'react-router-dom';
+import { withRouter } from 'react-router-dom';
 import Cookies from 'universal-cookie';
 import { authenticateUser } from './DataFetcher.js'
 
@@ -21,13 +21,11 @@ class Login extends Component {
                 new Cookies().set("key", data.key, { path: "/" });
             }),
         ).then((success) => {
-            if(success)
-                props.history.push('/profile');
-            else               
-                alert("Failed to login, username or password incorrect. Please try again.")
-        })
-        
-        ;
+            if (success)
+                this.props.history.push('/profile');
+            else
+                alert("Failed to login, username or password incorrect. Please try again.");
+        });
     }
 
     setEmail(email) {
@@ -96,4 +94,4 @@ class Login extends Component {
     }
 
 }
-export default Login;
+export default withRouter(Login);
