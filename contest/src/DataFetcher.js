@@ -1,6 +1,8 @@
 import Cookies from "universal-cookie";
 
-const djangoIP = "http://dent.ml:8000/";
+const djangoIP = 'http://dent:8000/';
+
+
 
 function logError(err) {
   console.log("Fetch Error:");
