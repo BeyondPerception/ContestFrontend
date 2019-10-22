@@ -22,7 +22,7 @@ class Login extends Component {
             }),
         ).then((success) => {
             if(success)
-                props.history.push('/profile');
+                this.props.history.push('/profile');
             else               
                 alert("Failed to login, username or password incorrect. Please try again.")
         })

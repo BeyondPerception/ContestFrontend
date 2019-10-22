@@ -36,3 +36,16 @@ export async function authenticateUser(email, password, success) {
     }
     else return false;
 }
+
+export async function getCurrentUser(key, success)
+{
+    const response = await fetch(`${djangoIP}users/get_current_user/`, {
+        method: "GET",
+        headers: {
+            "content-type": "application/json",
+            "Authorization": "Token " + key,
+        },
+    });
+    var json = await response.json();
+    if(json) success(json);
+}
