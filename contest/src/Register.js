@@ -30,62 +30,31 @@ class Register extends Component {
         });
     }
 
+
     submitHandler = event => {
         event.preventDefault();
-        const {
-            name,
-            password,
-            confirmPassword,
-            email,
-            confirmEmail,
-            school
-        } = this.state;
-        if (
-            name === "" ||
-            password === "" ||
-            confirmPassword === "" ||
-            email === "" ||
-            confirmEmail === "" ||
-            school === ""
-        ) {
+        const { name, password, confirmPassword, email, confirmEmail, school } = this.state;
+        if (name.trim() === "" || password.trim() === "" || confirmPassword.trim() === "" || email.trim() === "" || confirmEmail.trim() === "" || school.trim() === "") {
             alert("Please do not leave any fields blank");
             return;
         }
-
-        submitHandler = event => {
-            event.preventDefault();
-            const { name, password, confirmPassword, email, confirmEmail, school } = this.state;
-            if (name.trim() === "" || password.trim() === "" || confirmPassword.trim() === "" || email.trim() === "" || confirmEmail.trim() === "" || school.trim() === "") {
-                alert("Please do not leave any fields blank");
-                return;
-            }
-            if (password !== confirmPassword) {
-                alert("Passwords do not match, please try again.");
-                return;
-            }
-            if (email !== confirmEmail) {
-                alert("Emails do not match, please try again.");
-                return;
-            }
-            createUser(name, password, email, school, (data) => {
-            });
-            authenticateUser(email, password, (data) => {
-                new Cookies().set("key", data.key, { path: "/" });
-            });
-
-            this.props.history.push('/profile');
+        if (password !== confirmPassword) {
+            alert("Passwords do not match, please try again.");
+            return;
         }
         if (email !== confirmEmail) {
             alert("Emails do not match, please try again.");
             return;
         }
-        createUser(name, password, email, school, data => { });
-        authenticateUser(email, password, data => {
+        createUser(name, password, email, school, (data) => {
+        });
+        authenticateUser(email, password, (data) => {
             new Cookies().set("key", data.key, { path: "/" });
         });
 
-        this.props.history.push("/profile");
-    };
+        this.props.history.push('/profile');
+        window.location.reload(false);
+    }
 
     render() {
         const {
