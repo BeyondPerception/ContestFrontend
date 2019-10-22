@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { MDBContainer, MDBRow, MDBCol, MDBBtn, MDBInput, MDBCard, MDBCardBody } from 'mdbreact';
+import { Redirect } from 'react-router-dom';
 import Cookies from 'universal-cookie';
 import { authenticateUser } from './DataFetcher.js'
 

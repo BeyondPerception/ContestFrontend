@@ -61,9 +61,6 @@ class NavBar extends Component {
                     <MDBNavLink to="/login">Login</MDBNavLink>
                   </MDBNavItem>
                   <MDBNavItem>
-                    <MDBNavLink to="/formpage">Test</MDBNavLink>
-                  </MDBNavItem>
-                  <MDBNavItem>
                     <MDBNavLink to="/register">Register</MDBNavLink>
                   </MDBNavItem>
                 </MDBNavbarNav>
@@ -95,9 +92,6 @@ class NavBar extends Component {
             </Route>
             <Route path="/Teams">
               <Teams />
-            </Route>
-            <Route path="/Formpage">
-              <Formpage />
             </Route>
             <Route path="/">
               <Home />

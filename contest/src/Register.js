@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { MDBContainer, MDBRow, MDBCol, MDBBtn, MDBInput, MDBCard } from 'mdbreact';
-import { createUser } from './DataFetcher.js';
+import { withRouter } from 'react-router-dom';
+import { createUser, authenticateUser } from './DataFetcher.js';
 import Cookies from 'universal-cookie';
 
 class Register extends Component {
@@ -26,6 +27,10 @@ class Register extends Component {
     submitHandler = event => {
         event.preventDefault();
         const { name, password, confirmPassword, email, confirmEmail, school } = this.state;
+        if (name === "" || password === "" || confirmPassword === "" || email === "" || confirmEmail === "" || school === "") {
+            alert("Please do not leave any fields blank");
+            return;
+        }
         if (password !== confirmPassword) {
             alert("Passwords do not match, please try again.");
             return;
@@ -37,8 +42,10 @@ class Register extends Component {
         createUser(name, password, email, school, (data) => {
             new Cookies().set("user", data.id, { path: "/" });
             console.log(data);
-            // this.props.update(() => this.props.history.push("/profile"));
         });
+        authenticateUser(email, password);
+
+        this.props.history.push('/profile');
     }
 
     render() {
@@ -117,7 +124,7 @@ class Register extends Component {
                                 />
                             </div>
                             <div className="text-center">
-                                <MDBBtn color="red" type="submit" href='/login'>Register</MDBBtn>
+                                <MDBBtn color="red" type="submit">Register</MDBBtn>
                             </div>
                         </form>
                     </MDBCol>
@@ -127,4 +134,4 @@ class Register extends Component {
     }
 
 }
-export default Register;
+export default withRouter(Register);
