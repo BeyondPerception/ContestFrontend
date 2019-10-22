@@ -21,9 +21,10 @@ class Login extends Component {
                 new Cookies().set("key", data.key, { path: "/" });
             }),
         ).then((success) => {
-            if (success)
+            if (success) {
                 this.props.history.push('/profile');
-            else
+                window.location.reload(false);
+            } else
                 alert("Failed to login, username or password incorrect. Please try again.");
         });
     }

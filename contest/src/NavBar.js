@@ -21,6 +21,8 @@ import Frgtpass from "./Forgotpass.js";
 import Teams from "./Teams.js";
 import { isLogicalExpression } from "@babel/types";
 import Cookies from "universal-cookie";
+import { logout } from "./DataFetcher.js";
+
 
 class NavBar extends Component {
   constructor(props) {
@@ -37,86 +39,142 @@ class NavBar extends Component {
     });
   }
 
+  logout() {
+    var cookie = new Cookies();
+    logout(cookie.get("key"))
+    cookie.remove("key");
+    window.location.reload(false);
+  }
+
   render() {
     var cookies = new Cookies();
-    return (
-      <div>
-        <Router>
-          <header>
-            <MDBNavbar color="red" dark expand="md">
-              <MDBNavbarBrand href="/">
-                <strong>CyWoods Contest</strong>
-              </MDBNavbarBrand>
-              <MDBNavbarToggler onClick={this.onClick} />
-              <MDBCollapse isOpen={this.state.collapse} navbar>
-                <MDBNavbarNav left>
-                  <MDBNavItem>
-                    <MDBNavLink to="/">Home</MDBNavLink>
-                  </MDBNavItem>
-                  {/* <MDBNavItem>
-                    <MDBNavLink to="/written">Written Scoreboard</MDBNavLink>
-                  </MDBNavItem>
-                  <MDBNavItem>
-                    <MDBNavLink to="/programming">Programming Scoreboard</MDBNavLink>
-                  </MDBNavItem> */}
-                  <MDBNavItem>
-                    <MDBNavLink to="/teams">Teams</MDBNavLink>
-                  </MDBNavItem>
-                  {cookies.get("key") && (
+    if (cookies.get("key")) {
+      return (
+        <div>
+          <Router>
+            <header>
+              <MDBNavbar color="red" dark expand="md">
+                <MDBNavbarBrand href="/">
+                  <strong>CyWoods Contest</strong>
+                </MDBNavbarBrand>
+                <MDBNavbarToggler onClick={this.onClick} />
+                <MDBCollapse isOpen={this.state.collapse} navbar>
+                  <MDBNavbarNav left>
+                    <MDBNavItem>
+                      <MDBNavLink to="/">Home</MDBNavLink>
+                    </MDBNavItem>
+                    {/* <MDBNavItem>
+                      <MDBNavLink to="/written">Written Scoreboard</MDBNavLink>
+                    </MDBNavItem>
+                    <MDBNavItem>
+                      <MDBNavLink to="/programming">Programming Scoreboard</MDBNavLink>
+                    </MDBNavItem> */}
+                    <MDBNavItem>
+                      <MDBNavLink to="/teams">Teams</MDBNavLink>
+                    </MDBNavItem>
                     <MDBNavItem>
                       <MDBNavLink to="/profile">Profile</MDBNavLink>
                     </MDBNavItem>
-                  )}
-                </MDBNavbarNav>
-                <MDBNavbarNav right>
-                  <MDBNavItem>
-                    <MDBNavLink to="/login">Login</MDBNavLink>
-                  </MDBNavItem>
-                  <MDBNavItem>
-                    <MDBNavLink to='{logout()}'>
-                      Logout
-                    </MDBNavLink>
-                  </MDBNavItem>
-                  <MDBNavItem>
-                    <MDBNavLink to="/register">Register</MDBNavLink>
-                  </MDBNavItem>
-                </MDBNavbarNav>
-              </MDBCollapse>
-            </MDBNavbar>
-          </header>
-          {/* Add new pages here*/}
-          <Switch>
-            <Route path="/profile">
-              <Profile />
-            </Route>
-            <Route path="/programming">
-              <ProgrammingScoreboard />
-            </Route>
-            <Route path="/written">
-              <WrittenScoreboard />
-            </Route>
-            <Route path="/Register">
-              <Register />
-            </Route>
-            <Route path="/login">
-              <Login />
-            </Route>
-            <Route path="/Editinfo">
-              <Editinfo />
-            </Route>
-            <Route path="/Forgotpass">
-              <Frgtpass />
-            </Route>
-            <Route path="/Teams">
-              <Teams />
-            </Route>
-            <Route path="/">
-              <Home />
-            </Route>
-          </Switch>
-        </Router>
-      </div>
-    );
+                  </MDBNavbarNav>
+                  <MDBNavbarNav right>
+                    <MDBNavItem>
+                      <MDBNavLink to="/" onClick={() => this.logout()}>Logout</MDBNavLink>
+                    </MDBNavItem>
+                  </MDBNavbarNav>
+                </MDBCollapse>
+              </MDBNavbar>
+            </header>
+            {/* Add new pages here*/}
+            <Switch>
+              <Route path="/profile">
+                <Profile />
+              </Route>
+              <Route path="/programming">
+                <ProgrammingScoreboard />
+              </Route>
+              <Route path="/written">
+                <WrittenScoreboard />
+              </Route>
+              <Route path="/Editinfo">
+                <Editinfo />
+              </Route>
+              <Route path="/Forgotpass">
+                <Frgtpass />
+              </Route>
+              <Route path="/Teams">
+                <Teams />
+              </Route>
+              <Route path="/">
+                <Home />
+              </Route>
+            </Switch>
+          </Router>
+        </div>
+      );
+    } else {
+      return (
+        <div>
+          <Router>
+            <header>
+              <MDBNavbar color="red" dark expand="md">
+                <MDBNavbarBrand href="/">
+                  <strong>CyWoods Contest</strong>
+                </MDBNavbarBrand>
+                <MDBNavbarToggler onClick={this.onClick} />
+                <MDBCollapse isOpen={this.state.collapse} navbar>
+                  <MDBNavbarNav left>
+                    <MDBNavItem>
+                      <MDBNavLink to="/">Home</MDBNavLink>
+                    </MDBNavItem>
+                    {/* <MDBNavItem>
+                      <MDBNavLink to="/written">Written Scoreboard</MDBNavLink>
+                    </MDBNavItem>
+                    <MDBNavItem>
+                      <MDBNavLink to="/programming">Programming Scoreboard</MDBNavLink>
+                    </MDBNavItem> */}
+                  </MDBNavbarNav>
+                  <MDBNavbarNav right>
+                    <MDBNavItem>
+                      <MDBNavLink to="/login">Login</MDBNavLink>
+                    </MDBNavItem>
+                    <MDBNavItem>
+                      <MDBNavLink to="/register">Register</MDBNavLink>
+                    </MDBNavItem>
+                  </MDBNavbarNav>
+                </MDBCollapse>
+              </MDBNavbar>
+            </header>
+            {/* Add new pages here*/}
+            <Switch>
+              <Route path="/profile">
+                <Profile />
+              </Route>
+              <Route path="/programming">
+                <ProgrammingScoreboard />
+              </Route>
+              <Route path="/written">
+                <WrittenScoreboard />
+              </Route>
+              <Route path="/Register">
+                <Register />
+              </Route>
+              <Route path="/login">
+                <Login />
+              </Route>
+              <Route path="/Editinfo">
+                <Editinfo />
+              </Route>
+              <Route path="/Forgotpass">
+                <Frgtpass />
+              </Route>
+              <Route path="/">
+                <Home />
+              </Route>
+            </Switch>
+          </Router>
+        </div>
+      );
+    }
   }
 }
 
